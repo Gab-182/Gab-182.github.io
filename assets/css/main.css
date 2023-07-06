@@ -2213,6 +2213,53 @@ input, select, textarea {
 				color: #fff;
 			}
 
+/* Skills */
+.skills-tape-section {
+  padding: 20px 0;
+  text-align: center;
+}
+
+.skills-tape {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  justify-content: center;
+}
+
+.skills-tape li {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 10px;
+  margin: 1px 1px;
+  border-radius: 1em;
+  background-color: #ea6240;
+  font-size: 0.8em;
+  white-space: nowrap;
+  color: #ffffffe6;
+}
+
+.skills-tape li i {
+  margin-right: 5px;
+}
+
+.skills-tape::-webkit-scrollbar {
+  height: 12px;
+}
+
+.skills-tape::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 2px;
+}
+
+.skills-tape::-webkit-scrollbar-track {
+  background: #f2f2f2;
+  border-radius: 4px;
+}
+
+
 /* Intro */
 
 	#intro {
