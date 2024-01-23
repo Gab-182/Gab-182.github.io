@@ -85,7 +85,7 @@
 
 						<!-- Contact Form -->
 						<section>
-							<form id="contact-form" onSubmit="handleForm(event)">
+							<form id="contact-form">
 							  <div class="row gtr-50">
 								<div class="col-6 col-12-small">
 								  <input type="text" name="name" id="contact-name" placeholder="Name" required />
@@ -176,25 +176,29 @@
 		  
 		  <script type="text/javascript">
 			emailjs.init('e06oiuEFZL52Z1A03')
-			  const btn = document.getElementById('btn');
-			  function handleForm(event) {
-				event.preventDefault();
-				btn.value = 'Sending...';
+			  
+			
+			
+			const btn = document.getElementById('button');
 
-				var formData = {
-				  name: document.getElementById('contact-name').value,
-				  email: document.getElementById('contact-email').value,
-				  message: document.getElementById('contact-message').value
-				};
-				emailjs.sendForm('service_9col5ms', 'template_yob222g', formData)
-				  .then(function(response) {
-					  alert("Email sent successfully!");
-					  btn.value = 'Send Email';
-				  }, function(error) {
-					  alert(JSON.stringify(error));
-					  btn.value = 'Send Email';
-				  });
-			  }
+			document.getElementById('contact-form')
+			 .addEventListener('submit', function(event) {
+			   event.preventDefault();
+			
+			   btn.value = 'Sending...';
+			
+			   const serviceID = 'default_service';
+			   const templateID = 'template_yob222g';
+			
+			   emailjs.sendForm(serviceID, templateID, this)
+				.then(() => {
+				  btn.value = 'Send Email';
+				  alert('Sent!');
+				}, (err) => {
+				  btn.value = 'Send Email';
+				  alert(JSON.stringify(err));
+				});
+			});
 			</script>
 
 	</body>
