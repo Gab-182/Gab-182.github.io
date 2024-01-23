@@ -85,7 +85,7 @@
 
 						<!-- Contact Form -->
 						<section>
-							<form id="contact-form">
+							<form id="contact-form" onsubmit="handleForm">
 							  <div class="row gtr-50">
 								<div class="col-6 col-12-small">
 								  <input type="text" name="name" id="contact-name" placeholder="Name" required />
@@ -171,35 +171,36 @@
 			<script src="assets/js/main.js"></script>
 
 			<!-- Send Email Script -->
-			<script type="text/javascript"
-			src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-		  
-		  <script type="text/javascript">
-			emailjs.init('e06oiuEFZL52Z1A03')
-			  
-			
-			
-			const btn = document.getElementById('button');
-
-			document.getElementById('contact-form')
-			 .addEventListener('submit', function(event) {
-			   event.preventDefault();
-			
-			   btn.value = 'Sending...';
-			
-			   const serviceID = 'default_service';
-			   const templateID = 'template_yob222g';
-			
-			   emailjs.sendForm(serviceID, templateID, this)
-				.then(() => {
-				  btn.value = 'Send Email';
-				  alert('Sent!');
-				}, (err) => {
-				  btn.value = 'Send Email';
-				  alert(JSON.stringify(err));
-				});
-			});
+			<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+			<script>
+			  (function () {
+				emailjs.init('e06oiuEFZL52Z1A03');
+			  })();
 			</script>
+			<script>
+			  const btn = document.getElementById('btn');
+			
+			  const handleForm = async (e) => {
+			    event.preventDefault();
+			    btn.value = 'Sending...';
+			
+			    var formData = {
+			      name: document.getElementById('contact-name').value,
+			      email: document.getElementById('contact-email').value,
+			      message: document.getElementById('contact-message').value
+			    };
+				
+				try {
+			    await emailjs.sendForm('default_service', 'template_yob222g', formData)
+			    alert("Email sent successfully!");
+			    btn.value = 'Send Email';
+				} catch(error) {
+			        alert(JSON.stringify(error));
+			        btn.value = 'Send Email';
+			    };
+			  }
+			</script>
+
 
 	</body>
 </html>
