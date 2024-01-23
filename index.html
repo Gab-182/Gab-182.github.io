@@ -5,26 +5,6 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-
-		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-		<script type="text/javascript">
-			window.onload = function() {
-				document.getElementById('post').addEventListener('submit', function(event) {
-					event.preventDefault();
-					// generate a five digit number for the contact_number variable
-					this.contact_number.value = Math.random() * 100000 | 0;
-					// these IDs from the previous steps
-					emailjs.sendForm('service_9col5ms', 'template_ev2tsws', this)
-						.then(function() {
-							console.log('SUCCESS!');
-						}, function(error) {
-							console.log('FAILED...', error);
-						});
-				});
-			}
-		</script>
-
-
 	</head>
 	<body class="homepage is-preload">
 		<div id="page-wrapper">
@@ -105,7 +85,7 @@
 
 						<!-- Contact Form -->
 							<section>
-								<form method="post" action="#">
+								<form id="contact-form" onSubmit="handleForm()">
 									<div class="row gtr-50">
 										<div class="col-6 col-12-small">
 											<input type="text" name="name" id="contact-name" placeholder="Name" />
@@ -188,6 +168,20 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+
+			<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+			<script>(function () {emailjs.init('e06oiuEFZL52Z1A03');})();</script>
+			<script>
+				const handleForm = async (e) => {
+					try {
+						await emailjs.sendForm('service_9col5ms', 'template_ev2tsws', document.getElementById('contact-form'));
+						alert('email sent!');
+						} catch (error) {
+							console.error(error);
+							alert('Failed to send email');
+						}
+				};
+			</script>
 
 	</body>
 </html>
