@@ -97,7 +97,7 @@
 
 						<!-- Contact Form -->
 						<section>
-							<form id="contact-form" onsubmit="handleForm">
+							<form method="dialog" onsubmit="handleForm()">
 								<div class="row gtr-50">
 									<div class="col-6 col-12-small">
 										<input type="text" name="from_name" id="contact-name" placeholder="Name"
@@ -190,29 +190,23 @@
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
 	<script type="text/javascript">
-		emailjs.init('e06oiuEFZL52Z1A03')
+		emailjs.init({ user_id: 'e06oiuEFZL52Z1A03' });
 	</script>
 	<script>
-		const handleForm = async (event) => {
-			event.preventDefault();
+		const handleForm = async () => {
+			document.getElementById('btn').value = 'Sending...';
 			var formData = {
 				from_name: document.getElementById('contact-name').value,
 				from_email: document.getElementById('contact-email').value,
 				message: document.getElementById('contact-message').value
-			};
-
-			document.getElementById('btn').value = 'Sending...';
-
-			const serviceID = 'default_service';
-			const templateID = 'template_yob222g';
-
-			emailjs.sendForm(serviceID, templateID, event.target)
-				.then(() => {
-					document.getElementById('btn').value = 'Send Email';
-					alert('Sent!');
+			}
+			emailjs.send('default_service', 'template_yob222g', formData)
+			.then(() => {
+				document.getElementById('btn').value = 'Send Email';
+				alert(formData)
 				}, (err) => {
-					document.getElementById('btn').value = 'Send Email';
 					alert(JSON.stringify(err));
+					document.getElementById('btn').value = 'Send Email';
 				});
 		}
 
