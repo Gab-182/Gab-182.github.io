@@ -181,13 +181,12 @@
 				event.preventDefault();
 				btn.value = 'Sending...';
 
-				const templateID = 'template_yob222g';
 				var formData = {
 				  name: document.getElementById('contact-name').value,
 				  email: document.getElementById('contact-email').value,
 				  message: document.getElementById('contact-message').value
 				};
-				emailjs.sendForm(default_service, templateID, formData)
+				emailjs.sendForm('service_9col5ms', 'template_yob222g', formData)
 				  .then(function(response) {
 					  alert("Email sent successfully!");
 					  btn.value = 'Send Email';
