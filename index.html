@@ -98,7 +98,7 @@
 								</div>
 								<div class="col-12">
 								  <ul class="actions">
-									<li><input type="submit" class="style1" value="Send" /></li>
+									<li><input id="btn" type="submit" class="style1" value="Send" /></li>
 									<li><input type="reset" class="style2" value="Reset" /></li>
 								  </ul>
 								</div>
@@ -174,8 +174,8 @@
 			<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 			<script>
 			  emailjs.init("e06oiuEFZL52Z1A03");
-			  const btn = document.getElementById('button');
-
+			  const btn = document.getElementById('btn');
+			  console.log(btn)
 			  function handleForm(event) {
 				event.preventDefault();
 				btn.value = 'Sending...';
@@ -189,13 +189,13 @@
 				  message: document.getElementById('contact-message').value
 				};
 		  
-				emailjs.sendForm(serviceID, templateID, this)
+				emailjs.sendForm(serviceID, templateID, formData)
 				  .then(function(response) {
-					btn.value = 'Send Email';
-					alert("Email sent successfully!");
+					  alert("Email sent successfully!");
+					  btn.value = 'Send Email';
 				  }, function(error) {
-					btn.value = 'Send Email';
-					alert(JSON.stringify(error));
+					  alert(JSON.stringify(error));
+					  btn.value = 'Send Email';
 				  });
 			  }
 			</script>
