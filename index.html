@@ -184,14 +184,14 @@
 			    event.preventDefault();
 			    btn.value = 'Sending...';
 			
-			    var formData = {
-			      name: document.getElementById('contact-name').value,
-			      email: document.getElementById('contact-email').value,
-			      message: document.getElementById('contact-message').value
+				var formData = {
+					from_name: document.getElementById('contact-name').value,
+					from_email: document.getElementById('contact-email').value,
+					message: document.getElementById('contact-message').value
 			    };
 				
 				try {
-			    await emailjs.sendForm('default_service', 'template_yob222g', formData)
+			    await emailjs.sendForm('service_9col5ms', 'template_yob222g', formData)
 			    alert("Email sent successfully!");
 			    btn.value = 'Send Email';
 				} catch(error) {
