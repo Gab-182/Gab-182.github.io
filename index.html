@@ -5,6 +5,26 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+		<script type="text/javascript">
+			window.onload = function() {
+				document.getElementById('post').addEventListener('submit', function(event) {
+					event.preventDefault();
+					// generate a five digit number for the contact_number variable
+					this.contact_number.value = Math.random() * 100000 | 0;
+					// these IDs from the previous steps
+					emailjs.sendForm('service_9col5ms', 'template_ev2tsws', this)
+						.then(function() {
+							console.log('SUCCESS!');
+						}, function(error) {
+							console.log('FAILED...', error);
+						});
+				});
+			}
+		</script>
+
+
 	</head>
 	<body class="homepage is-preload">
 		<div id="page-wrapper">
@@ -15,7 +35,7 @@
 						<div id="logo">
 							<a href="index.html"><img class="logo" src="images/Logo_s.png" alt="site's logo"></a>
 							<h1><a href="index.html">Ghaiath Abdoush</a></h1>
-							<p>Software | Web | Blockchain Developer</p>
+							<p>Software && Web Developer | AI && Data Science Enthusiast </p>
 						</div>
 
 					<!-- Nav -->
