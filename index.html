@@ -169,14 +169,19 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+
 			<!-- Send Email Script -->
 			<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 			<script>
-			  emailjs.init("user_your_emailjs_user_id");  // Initialize Email.js with your user ID
-		  
+			  emailjs.init("e06oiuEFZL52Z1A03");
+			  const btn = document.getElementById('button');
+
 			  function handleForm(event) {
-				event.preventDefault();  // Prevent the default form submission
-		  
+				event.preventDefault();
+				btn.value = 'Sending...';
+
+				const serviceID = 'e06oiuEFZL52Z1A03';
+				const templateID = 'template_yob222g';
 				// Collect form data
 				var formData = {
 				  name: document.getElementById('contact-name').value,
@@ -184,18 +189,13 @@
 				  message: document.getElementById('contact-message').value
 				};
 		  
-				// Use the service, template, and parameters to send an email
-				emailjs.send("e06oiuEFZL52Z1A03", "template_ev2tsws", formData)
+				emailjs.sendForm(serviceID, templateID, this)
 				  .then(function(response) {
-					console.log("Email sent successfully:", response);
-		  
-					// Optionally, you can display a success message or redirect the user
+					btn.value = 'Send Email';
 					alert("Email sent successfully!");
 				  }, function(error) {
-					console.log("Email failed to send:", error);
-		  
-					// Optionally, you can display an error message
-					alert("Error sending email. Please try again.");
+					btn.value = 'Send Email';
+					alert(JSON.stringify(error));
 				  });
 			  }
 			</script>
