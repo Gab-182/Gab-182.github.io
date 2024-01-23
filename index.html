@@ -97,13 +97,14 @@
 
 						<!-- Contact Form -->
 						<section>
-							<form id="contact-form" onsubmit="handleForm" method="post">
+							<form id="contact-form" onsubmit="handleForm">
 								<div class="row gtr-50">
 									<div class="col-6 col-12-small">
-										<input type="text" name="name" id="contact-name" placeholder="Name" required />
+										<input type="text" name="from_name" id="contact-name" placeholder="Name"
+											required />
 									</div>
 									<div class="col-6 col-12-small">
-										<input type="email" name="email" id="contact-email" placeholder="Email"
+										<input type="email" name="from_email" id="contact-email" placeholder="Email"
 											required />
 									</div>
 									<div class="col-12">
@@ -185,12 +186,12 @@
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
+
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
 	<script type="text/javascript">
-		emailjs.init('e06oiuEFZL52Z1A03');
+		emailjs.init('e06oiuEFZL52Z1A03')
 	</script>
-
 	<script>
 		const handleForm = async (event) => {
 			event.preventDefault();
@@ -200,18 +201,17 @@
 				message: document.getElementById('contact-message').value
 			};
 
-			btn.value = 'Sending...';
+			document.getElementById('btn').value = 'Sending...';
 
 			const serviceID = 'default_service';
 			const templateID = 'template_yob222g';
 
 			emailjs.sendForm(serviceID, templateID, event.target)
 				.then(() => {
-					console.log(event.target)
-					btn.value = 'Send Email';
+					document.getElementById('btn').value = 'Send Email';
 					alert('Sent!');
 				}, (err) => {
-					btn.value = 'Send Email';
+					document.getElementById('btn').value = 'Send Email';
 					alert(JSON.stringify(err));
 				});
 		}
