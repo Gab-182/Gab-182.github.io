@@ -6,6 +6,8 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" type="text/css"
+		href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 </head>
 
 <body class="about_me is-preload">
@@ -236,6 +238,17 @@
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<script>
+		toastr.options = {
+			closeButton: true,
+			progressBar: true,
+			positionClass: 'toast-top-right',
+			preventDuplicates: true,
+			timeOut: 5000
+		};
+	</script>
+
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
 	<script type="text/javascript">
@@ -251,10 +264,10 @@
 			}
 			emailjs.send('default_service', 'template_yob222g', formData)
 				.then(() => {
+					toastr.success('Your message has been sent successfully!');
 					document.getElementById('btn').value = 'Send Email';
-					alert(formData)
 				}, (err) => {
-					alert(JSON.stringify(err));
+					toastr.error(JSON.stringify(err));
 					document.getElementById('btn').value = 'Send Email';
 				});
 		}
